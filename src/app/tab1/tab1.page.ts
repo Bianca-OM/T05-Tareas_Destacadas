@@ -33,4 +33,9 @@ export class Tab1Page {
     this.tasks = this.taskService.getTasks();
   }
 
+  public markTask(pos: number){
+    this.taskService.markTask(pos);
+    this.tasks = this.taskService.getTasks();
+  }
+
 }

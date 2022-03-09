@@ -1,17 +1,32 @@
 <ion-header [translucent]="true">
     <ion-toolbar>
         <ion-title>
-            Tab 3
+            Tareas Destacadas
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-        <ion-toolbar>
-            <ion-title size="large">Tab 3</ion-title>
-        </ion-toolbar>
-    </ion-header>
-
-    <app-explore-container name="Tab 3 page"></app-explore-container>
+    <ion-col>
+        <ion-list *ngIf="markedTasks.length > 0">
+            <ion-item-sliding *ngFor="let task of markedTasks; let i=index">
+                <ion-item-options side="start" (ionSwipe)="unmarkTask(i)">
+                    <ion-item-option expandable color="warning">
+                        <ion-icon name="backspace"></ion-icon>
+                    </ion-item-option>
+                    <ion-item-option (click)="compTask(i)">
+                        <ion-icon name="checkmark-done-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+                <ion-item>
+                    <ion-label>{{task}}</ion-label>
+                </ion-item>
+                <ion-item-options side="end" (ionSwipe)="removeMarkedTask(i)">
+                    <ion-item-option expandable color="danger">
+                        <ion-icon name="trash-outline"></ion-icon>
+                    </ion-item-option>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+    </ion-col>
 </ion-content>
